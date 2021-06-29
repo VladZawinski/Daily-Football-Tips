@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomSheetTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="bottomSheetStyle">@style/bottomSheetStyle</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorOnBackground">@color/black</item>
+
+    </style>
+
+    <style name="bottomSheetStyle">
+        <item name="android:background">@drawable/rounded_bottom_sheet_style</item>
+    </style>
+</resources>

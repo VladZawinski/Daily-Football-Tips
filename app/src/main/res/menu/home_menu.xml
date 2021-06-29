@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/addMatch"
+        android:title="Add Match"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_playlist_plus"/>
+
+    <item
+        android:id="@+id/refreshDatabase"
+        android:title="Refresh Database"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_database_refresh_outline"/>
+</menu>
