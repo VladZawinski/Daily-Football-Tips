@@ -10,7 +10,9 @@
         <entry key="app/src/main/res/font/metropolis.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2898550724637681" />
         <entry key="app/src/main/res/layout/bottomsheet_home.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_add_match.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_match.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/viewholder_pick.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/viewholder_pick_by_date.xml" value="0.33" />
         <entry key="app/src/main/res/menu/home_menu.xml" value="0.35625" />

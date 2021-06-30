@@ -16,25 +16,26 @@
         app:menu="@menu/home_menu"
         app:title="Tips" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:tabIndicatorFullWidth="false"
+        app:tabTextAppearance="@style/tabTextStyle"
+        app:tabMode="scrollable"
+        app:tabMaxWidth="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/matchDatePager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/picksRV"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/viewholder_pick_by_date" />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

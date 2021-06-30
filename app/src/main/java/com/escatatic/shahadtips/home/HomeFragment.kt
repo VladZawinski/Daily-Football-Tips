@@ -3,9 +3,12 @@ package com.escatatic.shahadtips.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.escatatic.shahadtips.R
 import com.escatatic.shahadtips.base.DataBindingFragment
 import com.escatatic.shahadtips.databinding.FragmentHomeBinding
+import com.escatatic.shahadtips.domain.models.MatchDate
+import com.escatatic.shahadtips.home.adapters.HomePagerAdapter
 import com.escatatic.shahadtips.home.adapters.PickByDateDiffItemCallback
 import com.escatatic.shahadtips.home.adapters.homeAdapterDelegate
 import com.escatatic.shahadtips.home.bottomsheet.HomeBottomSheetFragment
@@ -15,6 +18,7 @@ import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import io.uniflow.android.livedata.onEvents
 import io.uniflow.android.livedata.onStates
+import timber.log.Timber
 
 
 class HomeFragment(
@@ -23,61 +27,35 @@ class HomeFragment(
 
     private val viewModel by viewModels<HomeViewModel>()
 
-    private val delegate = AsyncListDifferDelegationAdapter(
-        PickByDateDiffItemCallback,
-        homeAdapterDelegate {
-            val bottomSheet = HomeBottomSheetFragment.newInstance(
-                onMarkAsWin = {
-                    viewModel.markAsWin(it.id)
-                },
-                onMarkAsLose = {
-                    viewModel.markAsLose(it.id)
-                },
-                onSearchOnBrowser = {
-
-                },
-                onUpdateScore = { home,away ->
-                    viewModel.updateGoals(home,away,it.id)
-                }
-            )
-            bottomSheet.show(requireFragmentManager(),HomeFragment::class.java.toString())
-        }
-    )
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.picksRV.apply {
-            adapter = delegate
-        }
+        viewBinding.materialToolbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.addMatch -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_addMatchFragment)
+                    false
+                }
+            }
 
-        viewBinding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.fetchForTheFirstTime()
+            true
         }
 
         onStates(viewModel){
             when(it){
                 is HomeViewState -> {
-                    viewBinding.swipeRefreshLayout.isRefreshing = false
-                    delegate.items = it.picks
+                        Timber.d("${it.dates}")
+                    if (it.dates.isNotEmpty()){
+                        setUpPager(it.dates)
+                    }
                 }
             }
         }
 
-        onEvents(viewModel){
-            when(it){
-                is HomeViewEffect.Updated -> {
-                    showSnackBar("Updated successfully!",viewBinding.root)
-                }
+    }
 
-                is HomeViewEffect.MarkedSuccessfully -> {
-                    showSnackBar("Marked successfully!",viewBinding.root)
-                }
-
-                is HomeViewEffect.Failed -> {
-                    showSnackBar("Something went wrong!",viewBinding.root)
-                }
-            }
-        }
+    private fun setUpPager(dates: List<MatchDate>){
+        viewBinding.matchDatePager.adapter = HomePagerAdapter(requireFragmentManager(),dates)
+        viewBinding.tabLayout.setupWithViewPager(viewBinding.matchDatePager)
     }
 }

@@ -79,10 +79,13 @@ dependencies {
     implementation "org.uniflow-kt:uniflow-android:$uniflow_version"
     testImplementation "org.uniflow-kt:uniflow-android-test:$uniflow_version"
 
+    implementation 'net.danlew:android.joda:2.10.9.1'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
 
     implementation("io.coil-kt:coil:1.2.2")
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha02"
+
 
 }

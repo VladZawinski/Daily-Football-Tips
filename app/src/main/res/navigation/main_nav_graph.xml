@@ -7,6 +7,15 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.escatatic.shahadtips.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_addMatchFragment"
+            app:destination="@id/addMatchFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addMatchFragment"
+        android:name="com.escatatic.shahadtips.addmatch.AddMatchFragment"
+        android:label="AddMatchFragment" />
 
 </navigation>

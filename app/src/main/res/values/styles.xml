@@ -11,4 +11,11 @@
     <style name="bottomSheetStyle">
         <item name="android:background">@drawable/rounded_bottom_sheet_style</item>
     </style>
+
+    <style name="tabTextStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textFontWeight">700</item>
+    </style>
+
+
 </resources>
