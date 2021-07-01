@@ -2,15 +2,15 @@ package com.escatatic.shahadtips.home.adapters
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
-import com.escatatic.shahadtips.domain.models.PicksByDate
+import com.escatatic.shahadtips.domain.models.PicksByTipster
 
 @SuppressLint("Unused")
-object PickByDateDiffItemCallback: DiffUtil.ItemCallback<PicksByDate>() {
-    override fun areItemsTheSame(oldItem: PicksByDate, newItem: PicksByDate): Boolean {
-        return oldItem.date == newItem.date
+object PickByDateDiffItemCallback: DiffUtil.ItemCallback<PicksByTipster>() {
+    override fun areItemsTheSame(oldItem: PicksByTipster, newItem: PicksByTipster): Boolean {
+        return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: PicksByDate, newItem: PicksByDate): Boolean {
+    override fun areContentsTheSame(oldItem: PicksByTipster, newItem: PicksByTipster): Boolean {
         return oldItem.data == newItem.data
     }
 }

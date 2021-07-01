@@ -55,7 +55,7 @@
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"
             android:layout_marginLeft="16dp"
-            android:text="Search match on browser"
+            android:text="Search match on Sofascore"
             android:textSize="16sp" />
 
     </LinearLayout>
@@ -85,6 +85,90 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/outline_button_color"
+        app:layout_constraintTop_toBottomOf="@+id/searchContainer"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Mark this match As"
+        android:textColor="@color/black"
+        android:textFontWeight="600"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchContainer" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/riskyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_campfire"
+        android:backgroundTint="@android:color/holo_red_dark"
+        app:borderWidth="0dp"
+        app:fabSize="mini"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/favoriteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/ic_star_face"
+        android:backgroundTint="@color/favorite_color"
+        app:borderWidth="0dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/riskyBtn"
+        app:layout_constraintStart_toEndOf="@+id/riskyBtn"
+        app:layout_constraintTop_toTopOf="@+id/riskyBtn" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/sureBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/ic_cash"
+        android:backgroundTint="@color/sure_color"
+        app:borderWidth="0dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/riskyBtn"
+        app:layout_constraintStart_toEndOf="@+id/favoriteBtn"
+        app:layout_constraintTop_toTopOf="@+id/riskyBtn" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ordinaryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/ic_call_merge"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/riskyBtn"
+        app:layout_constraintStart_toEndOf="@+id/sureBtn"
+        app:layout_constraintTop_toTopOf="@+id/riskyBtn" />
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/outline_button_color"
+        app:layout_constraintTop_toBottomOf="@+id/riskyBtn"
+        tools:layout_editor_absoluteX="-16dp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="100dp"
@@ -99,7 +183,7 @@
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchContainer">
+        app:layout_constraintTop_toBottomOf="@+id/view2">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/homeEditText"

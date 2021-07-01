@@ -35,4 +35,10 @@ interface ShahadTipsService {
 
     @GET("api/days")
     suspend fun getMatchDates(): MatchDateResponse
+
+    @POST("api/markAs")
+    suspend fun giveBadge(
+        @Query("id") id: String,
+        @Query("markAs") markAs: String
+    ): GiveBadgeResponse
 }

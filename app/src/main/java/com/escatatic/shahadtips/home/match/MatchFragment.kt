@@ -1,7 +1,9 @@
 package com.escatatic.shahadtips.home.match
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
+import android.view.*
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.escatatic.shahadtips.R
@@ -25,26 +27,78 @@ class MatchFragment(
 
     private val viewModel by viewModels<MatchViewModel>()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setHasOptionsMenu(true)
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     private val delegate = AsyncListDifferDelegationAdapter(
-        PicksDiffItemCallback,
-        pickAdapterDelegate {
-//            val bottomSheet = HomeBottomSheetFragment.newInstance(
-//                onMarkAsWin = {
-//                    viewModel.markAsWin(it.id)
-//                },
-//                onMarkAsLose = {
-//                    viewModel.markAsLose(it.id)
-//                },
-//                onSearchOnBrowser = {
-//
-//                },
-//                onUpdateScore = { home,away ->
-//                    viewModel.updateGoals(home,away,it.id)
-//                }
-//            )
-//            bottomSheet.show(requireFragmentManager(), MatchFragment::class.java.toString())
-        }
+        PickByDateDiffItemCallback,
+        homeAdapterDelegate(
+            onMatchClick = { pick ->
+                val bottomSheet = HomeBottomSheetFragment.newInstance(
+                    onMarkAsWin = {
+                        viewModel.markAsWin(pick.id)
+                    },
+                    onMarkAsLose = {
+                        viewModel.markAsLose(pick.id)
+                    },
+                    onSearchOnBrowser = {
+                        val query = "${pick.match.home} vs ${pick.match.away} sofascore"
+                        val url = "https://www.google.com/search?q=$query"
+                        startActivity(Intent(Intent.ACTION_VIEW,Uri.parse(url)))
+                    },
+                    onUpdateScore = { home,away ->
+                        viewModel.updateGoals(home,away,pick.id)
+                    },
+                    markAs = {
+                        viewModel.addBadge(pick.id,it)
+                    }
+                )
+                bottomSheet.show(requireFragmentManager(), MatchFragment::class.java.toString())
+            },
+            onLongClick = { pick,view ->
+                registerForContextMenu(view)
+                requireActivity().openContextMenu(view)
+                Timber.d("$pick")
+            }
+        )
     )
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        requireActivity().menuInflater.inflate(R.menu.markas_menu,menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.favorite -> {
+                return true
+            }
+
+            R.id.sure -> {
+                return true
+            }
+
+            R.id.risky -> {
+                return true
+            }
+
+            R.id.ordinary -> {
+                return true
+            }
+
+        }
+        return super.onContextItemSelected(item)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

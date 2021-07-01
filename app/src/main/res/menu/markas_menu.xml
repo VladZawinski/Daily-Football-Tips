@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/risky"
+        android:title="@string/risky"/>
+    <item
+        android:id="@+id/favorite"
+        android:title="@string/favorite"/>
+    <item
+        android:id="@+id/ordinary"
+        android:title="@string/ordinary"/>
+    <item
+        android:id="@+id/sure"
+        android:title="@string/sure"/>
+</menu>

@@ -4,4 +4,8 @@
     <string name="away">Away</string>
     <string name="tip">Tip</string>
     <string name="tip_by">Tip by</string>
+    <string name="risky">Risky</string>
+    <string name="favorite">Favorite</string>
+    <string name="sure">Sure</string>
+    <string name="ordinary">Ordinary</string>
 </resources>

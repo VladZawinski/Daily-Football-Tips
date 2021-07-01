@@ -18,11 +18,13 @@ data class PickDataModel(
     val tip: String,
     val dateOfTips: String,
     val createdAt: String,
-    val updatedAt: String
+    val updatedAt: String,
+    val tipBy: String?,
+    val markAs: String?
 ): Mapper<Pick> {
 
     override suspend fun map(): Pick {
-        return Pick(match.map(),goals.map(),result, id, tip, createdAt.getFormattedDate())
+        return Pick(match.map(),goals.map(),result, id, tip, createdAt.getFormattedDate(),tipBy,markAs)
     }
 
     private fun String.getFormattedDate(): String {

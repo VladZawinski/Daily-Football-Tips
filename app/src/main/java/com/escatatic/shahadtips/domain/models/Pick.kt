@@ -6,5 +6,7 @@ data class Pick(
     val result: String,
     val id: String,
     val tip: String,
-    val dateOfTips: String
+    val dateOfTips: String,
+    val tipBy: String?,
+    val badge: String?
 )

@@ -10,3 +10,10 @@ object BetStatus {
     const val LOSE = "lose"
     const val REFUND = "refunded"
 }
+
+object Badge {
+    const val RISKY = "risky"
+    const val SURE = "sure"
+    const val ORDINARY = "ordinary"
+    const val FAVORITE = "favorite"
+}

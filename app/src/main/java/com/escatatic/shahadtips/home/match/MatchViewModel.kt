@@ -15,7 +15,6 @@ class MatchViewModel @Inject constructor(
         onAction = {
             sendEvent { MatchViewEvent.Loading }
             val result = repo.findMatchesByDate(date)
-            Timber.d("$result")
             setState { (it as MatchViewState).copy(picks = result,currentDate = date) }
         }
     )
@@ -27,18 +26,26 @@ class MatchViewModel @Inject constructor(
     }
 
     fun markAsWin(id: String) = action {
-        repo.markAsWin(id)
+        val result = repo.markAsWin(id)
         sendEvent { MatchViewEvent.MarkedSuccessfully }
+        refresh()
     }
 
     fun markAsLose(id: String) = action {
         repo.markAsLose(id)
         sendEvent { MatchViewEvent.MarkedSuccessfully }
+        refresh()
     }
 
     fun updateGoals(home: Int, away: Int, id: String) = action {
         repo.updateGoals(home, away, id)
         sendEvent { MatchViewEvent.Updated }
+        refresh()
     }
 
+    fun addBadge(id: String,type: String) = action {
+        repo.addBadge(id, type)
+        sendEvent { MatchViewEvent.Updated }
+        refresh()
+    }
 }

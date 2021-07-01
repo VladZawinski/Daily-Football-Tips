@@ -44,7 +44,6 @@ class HomeFragment(
         onStates(viewModel){
             when(it){
                 is HomeViewState -> {
-                        Timber.d("${it.dates}")
                     if (it.dates.isNotEmpty()){
                         setUpPager(it.dates)
                     }
@@ -55,7 +54,11 @@ class HomeFragment(
     }
 
     private fun setUpPager(dates: List<MatchDate>){
-        viewBinding.matchDatePager.adapter = HomePagerAdapter(requireFragmentManager(),dates)
-        viewBinding.tabLayout.setupWithViewPager(viewBinding.matchDatePager)
+        viewBinding.matchDatePager.apply {
+            adapter = HomePagerAdapter(childFragmentManager,dates)
+            viewBinding.tabLayout.setupWithViewPager(this)
+            offscreenPageLimit = 3
+        }
+
     }
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.escatatic.shahadtips.R
+import com.escatatic.shahadtips.base.Badge
 import com.escatatic.shahadtips.databinding.BottomsheetHomeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -16,7 +17,8 @@ class HomeBottomSheetFragment(
     private val onMarkAsWin: () -> Unit,
     private val onMarkAsLose: () -> Unit,
     private val onUpdateScore: (Int,Int) -> Unit,
-    private val onSearchOnBrowser: () -> Unit
+    private val onSearchOnBrowser: () -> Unit,
+    private val markAs: (String) -> Unit
 ): BottomSheetDialogFragment(){
 
     private lateinit var viewBinding : BottomsheetHomeBinding
@@ -31,8 +33,13 @@ class HomeBottomSheetFragment(
         return viewBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
+
+        viewBinding.riskyBtn.setOnClickListener { markAs(Badge.RISKY) }
+        viewBinding.favoriteBtn.setOnClickListener { markAs(Badge.FAVORITE) }
+        viewBinding.sureBtn.setOnClickListener { markAs(Badge.SURE) }
+        viewBinding.ordinaryBtn.setOnClickListener { markAs(Badge.ORDINARY) }
 
         viewBinding.markAsWinContainer.setOnClickListener {
             onMarkAsWin()
@@ -68,7 +75,8 @@ class HomeBottomSheetFragment(
             onMarkAsWin: () -> Unit,
             onMarkAsLose: () -> Unit,
             onUpdateScore: (Int,Int) -> Unit,
-            onSearchOnBrowser: () -> Unit
-        ) = HomeBottomSheetFragment(onMarkAsWin,onMarkAsLose,onUpdateScore, onSearchOnBrowser)
+            onSearchOnBrowser: () -> Unit,
+            markAs: (String) -> Unit
+        ) = HomeBottomSheetFragment(onMarkAsWin,onMarkAsLose,onUpdateScore, onSearchOnBrowser,markAs)
     }
 }
